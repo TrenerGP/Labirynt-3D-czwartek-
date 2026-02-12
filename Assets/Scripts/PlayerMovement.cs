@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
                 case "FASTPlane":
                     speed = 20f;
                     break;
-                case "SLOWPlane":
+                case "SLOWPLane":
                     speed = 1f;
                     break;
                 case "ReversePlane":
@@ -63,5 +63,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.tag == "PickUp")
+        {
+            hit.gameObject.GetComponent<PickUp>().Picked();
+        }
     }
 }

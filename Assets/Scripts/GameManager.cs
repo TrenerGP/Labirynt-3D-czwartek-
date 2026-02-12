@@ -7,6 +7,11 @@ public class GameManager : MonoBehaviour
     bool win;
     bool gamePaused;
 
+    public int RedKey;
+    public int GreenKey;
+    public int BlueKey;
+    public int points;
+
     private void Start()
     {
         if (instance == null)
@@ -72,5 +77,28 @@ public class GameManager : MonoBehaviour
                 PauseGame();
             }
         }
+    }
+
+    public void AddPoints(int p=1)
+    {
+        points += p;
+    }
+
+    public void AddTime(int time=5)
+    {
+        timeToEnd += time;
+    }
+
+    public void FreezeTime(int time=10)
+    {
+        CancelInvoke(nameof(Stopper));
+        InvokeRepeating(nameof(Stopper), time, 1);
+    }
+
+    public void AddKey(KeyColor color)
+    {
+        if (color == KeyColor.Red) RedKey++;
+        else if (color == KeyColor.Green) GreenKey++;
+        else if (color == KeyColor.Blue) BlueKey++;
     }
 }
