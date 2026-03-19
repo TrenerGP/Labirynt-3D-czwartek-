@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public int GreenKey;
     public int BlueKey;
     public int points;
+    public int speedBoost;
 
     private void Start()
     {
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
         InvokeRepeating(nameof(Stopper), 0, 1);
+        RestartSpeed();
     }
 
     private void Update()
@@ -93,6 +95,17 @@ public class GameManager : MonoBehaviour
     {
         CancelInvoke(nameof(Stopper));
         InvokeRepeating(nameof(Stopper), time, 1);
+    }
+
+    private void RestartSpeed()
+    {
+        speedBoost = 1;
+    }
+
+    public void GiveSpeedBoost(int time = 10, int speed=2)
+    {
+        speedBoost = speed;
+        Invoke(nameof(RestartSpeed), time);
     }
 
     public void AddKey(KeyColor color)

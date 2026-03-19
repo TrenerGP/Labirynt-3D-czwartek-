@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
-    public Vector3 rotationSpeed = new Vector3(0, 50f, 0);
+    public Vector3 rotationSpeed = new Vector3(0, 0, 50f);
     public float amplitude = 0.001f;
     public float frequency = 2f;
 
